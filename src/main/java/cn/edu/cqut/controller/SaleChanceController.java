@@ -1,8 +1,13 @@
 package cn.edu.cqut.controller;
 
 
+import cn.edu.cqut.service.SaleChanceService;
+import cn.edu.cqut.service.impl.SaleChanceServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.xml.ws.Action;
 
 /**
  * <p>
@@ -15,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/saleChance")
 public class SaleChanceController {
+    @Autowired
+    private SaleChanceService saleChanceService;
 
 }
 
