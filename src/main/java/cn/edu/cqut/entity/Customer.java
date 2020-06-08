@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -49,6 +50,16 @@ public class Customer extends Model<Customer> {
     @TableField("cusCredit")
     private String cusCredit;
 
+    @TableField(exist = false)
+    private List<Contact> contacts;
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
     public String getCusNo() {
         return cusNo;

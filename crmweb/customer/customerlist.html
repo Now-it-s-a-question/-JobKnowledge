@@ -35,7 +35,7 @@ layui.use(['table','jquery'], function(){
 	  ,{field: 'cusUrl', title: '客户网站', width:100} ,
 	  ,{field: 'cusLevel', title: '客户等级', width:100} ,
 	  ,{field: 'cusCredit', title: '信用等级',templet:function(item){
-		  if(item.cusCredit=='一级'){
+		  if(item.cusCredit==='一级'){
 			  return '一等'
 		  }else{
 			  return item.cusCredit

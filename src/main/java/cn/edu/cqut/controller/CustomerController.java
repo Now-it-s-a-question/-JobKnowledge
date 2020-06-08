@@ -45,7 +45,8 @@ public class CustomerController {
 			Customer customer){ 
 		QueryWrapper<Customer> qw = new QueryWrapper<>();
 		if(customer.getCusName()!=null) {
-			qw.like("cusName", customer.getCusName()); //第一个参数是字段名
+			//第一个参数是字段名
+			qw.like("cusName", customer.getCusName());
 		}
 		Page<Customer> pageCustomer = customerService.page(
 				new Page<Customer>(page,limit), qw);
@@ -53,15 +54,18 @@ public class CustomerController {
 		CrmResult<Customer> ret = new CrmResult<>();
 		ret.setCode(0);
 		ret.setMsg("");
-		ret.setCount(pageCustomer.getTotal());//表里的记录总数
-		ret.setData(pageCustomer.getRecords()); //这页的数据列表
+		//表里的记录总数
+		ret.setCount(pageCustomer.getTotal());
+		//这页的数据列表
+		ret.setData(pageCustomer.getRecords());
 		return ret;
 	}
 	
 	@ApiIgnore
 	@RequestMapping("/updateCustomer")
 	public CrmResult<Customer> updateCustomer(Customer customer){
-		customerService.updateById(customer);  //根据主键更新表
+		//根据主键更新表
+		customerService.updateById(customer);
 		
 		CrmResult<Customer> ret = new CrmResult<>();
 		ret.setCode(0);

@@ -1,7 +1,7 @@
 package cn.edu.cqut.service.impl;
 
 import cn.edu.cqut.entity.Customer;
-import cn.edu.cqut.mapper.CustomerMapper;
+import cn.edu.cqut.dao.CustomerMapper;
 import cn.edu.cqut.service.ICustomerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

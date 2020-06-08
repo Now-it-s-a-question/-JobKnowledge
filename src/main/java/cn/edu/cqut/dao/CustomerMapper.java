@@ -1,4 +1,4 @@
-package cn.edu.cqut.mapper;
+package cn.edu.cqut.dao;
 
 import cn.edu.cqut.entity.Customer;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
