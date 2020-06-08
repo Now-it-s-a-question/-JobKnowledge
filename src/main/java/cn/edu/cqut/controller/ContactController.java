@@ -4,9 +4,9 @@ package cn.edu.cqut.controller;
 import cn.edu.cqut.entity.Contact;
 import cn.edu.cqut.service.IContactService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @author Glorious
  * @since 2020-06-08
  */
-@Controller
+@RestController
 @RequestMapping("/contact")
 public class ContactController {
 	@Autowired

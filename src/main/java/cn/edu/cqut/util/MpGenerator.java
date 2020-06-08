@@ -20,8 +20,9 @@ public class MpGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         gc.setAuthor("Glorious");
-        gc.setServiceName("%service");
-        gc.setMapperName("%dao");
+        gc.setServiceName("%sService");
+        gc.setMapperName("%sDao");
+
         gc.setSwagger2(true);
         //对应项目的src/main/java目录在磁盘上的真实路径
         gc.setOutputDir("D:\\IdeaProjects\\-JobKnowledge/src/main/java");
@@ -51,7 +52,7 @@ public class MpGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         // 需要生成的表
-        strategy.setInclude("contact");
+        strategy.setInclude("sale_chance");
         mpg.setStrategy(strategy);
  
         // 包配置
