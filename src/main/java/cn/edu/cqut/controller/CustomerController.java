@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * <p>
@@ -93,6 +94,10 @@ public class CustomerController {
 		ret.setCode(0);
 		ret.setMsg("删除客户成功");
 		return ret;
+	}
+	@RequestMapping(value="/getCustomerWithContact",method = RequestMethod.POST)
+	public List<Customer> getCustomerWithContact(){
+		return customerService.getCustomerWithContact();
 	}
 }
 

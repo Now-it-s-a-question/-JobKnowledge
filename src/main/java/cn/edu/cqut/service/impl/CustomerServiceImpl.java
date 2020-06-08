@@ -6,6 +6,8 @@ import cn.edu.cqut.service.ICustomerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -17,4 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements ICustomerService {
 
+	@Override
+	public List<Customer> getCustomerWithContact() {
+		return baseMapper.selectCustomerWithContact();
+	}
 }
