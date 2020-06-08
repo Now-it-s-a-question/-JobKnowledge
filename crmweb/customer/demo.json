@@ -1,0 +1,9 @@
+{
+	"code":0,
+	"msg":"后台数据获取错误",
+	"count":15,
+	"data":[
+		{"id":1,"username":"张三","sex":"男","city":"CQ"},
+		{"id":2,"username":"李四","sex":"女","city":"CD"}
+	]
+}
