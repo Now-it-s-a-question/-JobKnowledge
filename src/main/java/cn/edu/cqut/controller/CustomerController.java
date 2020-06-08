@@ -2,28 +2,19 @@
 package cn.edu.cqut.controller;
 
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-
 import cn.edu.cqut.entity.Customer;
 import cn.edu.cqut.service.ICustomerService;
 import cn.edu.cqut.util.CrmResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Arrays;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -43,7 +34,7 @@ public class CustomerController {
 	
 	@ApiOperation(value = "分页返回客户信息",
 			notes = "分页查询客户信息，默认返回第一页，每页10行。还可以根据cusName模糊查询")
-	@RequestMapping(value="/customers",method = RequestMethod.POST)
+	@RequestMapping(value="/customers",method = RequestMethod.GET)
 	public CrmResult<Customer> getAllCustomer(
 			@ApiParam(value = "要查询的页码",required = true)
 			@RequestParam(defaultValue = "1") 
