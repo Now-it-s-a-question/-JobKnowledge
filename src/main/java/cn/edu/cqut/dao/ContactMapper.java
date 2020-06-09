@@ -2,6 +2,7 @@ package cn.edu.cqut.dao;
 
 import cn.edu.cqut.entity.Contact;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import net.sf.jsqlparser.expression.operators.arithmetic.Concat;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -17,4 +18,6 @@ import java.util.List;
 public interface ContactMapper extends BaseMapper<Contact> {
 	@Select("select * from contact where cusNo=#{cusNo}")
 	List<Contact> selectContactByCusNo(String cusNo);
+
+	Concat getOne();
 }

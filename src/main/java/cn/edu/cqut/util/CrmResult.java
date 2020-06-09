@@ -9,6 +9,7 @@ public class CrmResult<T> {
 	private String msg;
 	private Long count;
 	private List<T> data;
+	private T entity;
 	
 	public Integer getCode() {
 		return code;
@@ -34,5 +35,12 @@ public class CrmResult<T> {
 	public void setData(List<T> data) {
 		this.data = data;
 	}
-	
+
+	public T getT() {
+		return entity;
+	}
+
+	public void setT(T entity) {
+		this.entity = entity;
+	}
 }

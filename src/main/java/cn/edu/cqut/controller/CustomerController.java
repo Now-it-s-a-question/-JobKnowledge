@@ -50,7 +50,7 @@ public class CustomerController {
 			qw.like("cusName", customer.getCusName());
 		}
 		Page<Customer> pageCustomer = customerService.page(
-				new Page<Customer>(page,limit), qw);
+				new Page<>(page, limit), qw);
 		
 		CrmResult<Customer> ret = new CrmResult<>();
 		ret.setCode(0);
