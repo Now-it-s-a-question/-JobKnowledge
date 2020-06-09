@@ -52,7 +52,7 @@ public class MpGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         // 需要生成的表
-        strategy.setInclude("sale_chance");
+        strategy.setInclude("contact_record");
         mpg.setStrategy(strategy);
  
         // 包配置

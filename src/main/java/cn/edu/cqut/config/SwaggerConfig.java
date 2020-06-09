@@ -21,17 +21,22 @@ public class SwaggerConfig {
 	    return new Docket(DocumentationType.SWAGGER_2)
 	            .apiInfo(apiInfo())
 	            .select()
-	            .apis(RequestHandlerSelectors.basePackage("cn.edu.cqut.controller")) //指定controller根包
+				//指定controller根包
+	            .apis(RequestHandlerSelectors.basePackage("cn.edu.cqut.controller"))
 	            .paths(PathSelectors.any())
 	            .build();
 	  }
 
 	  private ApiInfo apiInfo() {
 	    return new ApiInfoBuilder()
-	            .title("CRM管理系统")  //标题
-	            .description("理工软件工程2020实训")  //描述
-	            .contact(new Contact("hqyj","http://www.hqyj.com","service@mail.hqyj")) //联系信息
-	            .version("1.0") //版本号
+				//标题
+	            .title("CRM管理系统")
+				//描述
+	            .description("理工软件工程2020实训")
+				//联系信息
+	            .contact(new Contact("xx","xx","xx"))
+				//版本号
+	            .version("1.0")
 	            .build();
 	  }
 }
