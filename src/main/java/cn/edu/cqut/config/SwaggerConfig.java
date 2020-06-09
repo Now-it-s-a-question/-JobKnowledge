@@ -34,7 +34,7 @@ public class SwaggerConfig {
 				//描述
 	            .description("理工软件工程2020实训")
 				//联系信息
-	            .contact(new Contact("xx","xx","xx"))
+	            .contact(new Contact("xxx","xx","xx"))
 				//版本号
 	            .version("1.0")
 	            .build();
