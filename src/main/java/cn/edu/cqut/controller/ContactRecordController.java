@@ -69,7 +69,7 @@ public class ContactRecordController {
 		CrmResult<ContactRecord> result = new CrmResult<>();
 		Page<ContactRecord> contactRecordPage = contactRecordService.page(new Page<>(page, limit));
 		result.setCode(0);
-		result.setData(contactRecordPage.getRecords());
+		result.setEntityList(contactRecordPage.getRecords());
 		return result;
 	}
 }

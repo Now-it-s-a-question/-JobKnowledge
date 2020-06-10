@@ -61,7 +61,7 @@ public class SaleChanceController {
 		Page<SaleChance> chancePage = saleChanceService.page(new Page<>(page, limit));
 		result.setCode(0);
 		result.setMsg("");
-		result.setData(chancePage.getRecords());
+		result.setEntityList(chancePage.getRecords());
 		return result;
 	}
 

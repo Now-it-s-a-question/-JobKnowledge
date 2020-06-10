@@ -2,14 +2,12 @@ package cn.edu.cqut.util;
 
 import java.util.List;
 
-import cn.edu.cqut.entity.Customer;
-
-public class CrmResult<T> {
+public class CrmResult<E> {
 	private Integer code;
 	private String msg;
 	private Long count;
-	private List<T> data;
-	private T entity;
+	private List<E> EntityList;
+	private E entity;
 	
 	public Integer getCode() {
 		return code;
@@ -29,18 +27,18 @@ public class CrmResult<T> {
 	public void setCount(Long count) {
 		this.count = count;
 	}
-	public List<T> getData() {
-		return data;
+	public List<E> getEntityList() {
+		return EntityList;
 	}
-	public void setData(List<T> data) {
-		this.data = data;
+	public void setEntityList(List<E> entityList) {
+		this.EntityList = entityList;
 	}
 
-	public T getT() {
+	public E getEntity() {
 		return entity;
 	}
 
-	public void setT(T entity) {
+	public void setEntity(E entity) {
 		this.entity = entity;
 	}
 }
