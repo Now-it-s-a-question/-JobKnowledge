@@ -67,11 +67,11 @@
 					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
-			<div class="layui-form-item">
+			<div class="layui-form-item">			  
 				<label class="layui-form-label">创建时间</label>
-				<div class="layui-input-block">
-					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
-				</div>
+				<div class="layui-input-inline">
+				  <input type="text" name="recordDate" class="layui-input" id="test2" placeholder="yyyy-MM-dd">
+				</div>				
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">指派给</label>
@@ -79,11 +79,12 @@
 					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
-			<div class="layui-form-item">
+		
+			<div class="layui-form-item">			  
 				<label class="layui-form-label">指派时间</label>
-				<div class="layui-input-block">
-					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
-				</div>
+				<div class="layui-input-inline">
+				  <input type="text" name="recordDate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+				</div>				
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
@@ -95,9 +96,16 @@
 
 		<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			layui.use(['form', 'jquery'], function() {
+			layui.use(['form', 'jquery','laydate' ], function() {
 				var form = layui.form
 				var $ = layui.jquery
+				var laydate = layui.laydate
+				laydate.render({
+				elem: '#test1' ,//指定元素
+				});
+				laydate.render({
+				elem: '#test2' ,//指定元素
+				});
 				form.render()
 				form.on('submit(btnSubmitAddCustomer)', function(data) {
 					if (form.verify()) {
