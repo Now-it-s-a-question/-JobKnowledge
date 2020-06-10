@@ -59,13 +59,17 @@ public class SaleChanceController {
 			@ApiParam(value = "要查询的页码", required = true)
 			@RequestParam(defaultValue = "10") Integer limit
 	,SaleChance saleChance) {
-
 		CrmResult<SaleChance> result = new CrmResult<>();
 		QueryWrapper<SaleChance> wrapper = new QueryWrapper<>();
-		wrapper.lambda().eq(SaleChance::getStatus, saleChance.getStatus());
+		if (saleChance.getStatus() != null) {
+			wrapper.lambda().like(SaleChance::getStatus, saleChance.getStatus());
+		}
 		Page<SaleChance> chancePage = saleChanceService.page(new Page<>(page, limit),wrapper);
 		result.setCode(0);
 		result.setMsg("");
+		//表里的记录总数
+		result.setCount(chancePage.getTotal());
+		//这页的数据列表
 		result.setData(chancePage.getRecords());
 		return result;
 	}
