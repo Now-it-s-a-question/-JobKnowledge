@@ -23,6 +23,7 @@ import java.util.Arrays;
  */
 @RestController
 @RequestMapping("/contactRecord")
+@CrossOrigin
 @Api(tags = "客户交往记录管理")
 public class ContactRecordController {
 	@Autowired

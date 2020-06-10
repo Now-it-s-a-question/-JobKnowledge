@@ -1,0 +1,9 @@
+{
+	"code":0,
+	"msg":"后台数据获取错误",
+	"count":15,
+	"data":[
+		{"cusNo":1578,"cusName":"张三","cusSex":"男","position":"销售主管","cusLevel":"客户等级","cusCredit":"信用等级","contacts":"联系人"},
+		{"cusNo":1358,"cusName":"张三","cusSex":"男","position":"销售主管","cusLevel":"客户等级","cusCredit":"信用等级","contacts":"联系人"}
+	]
+}

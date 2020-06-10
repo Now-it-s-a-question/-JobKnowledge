@@ -24,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/contact")
+@CrossOrigin
 @Api(tags = "客户联系人管理")
 public class ContactController {
 	@Autowired

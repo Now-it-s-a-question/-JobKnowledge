@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../layui/css/layui.css" />
+	</head>
+	<body style="padding: 20px 30px 0px 0px;">
+		<form class="layui-form" lay-filter='formAddCustomer' action="">			
+								
+			<div class="layui-form-item">			  
+				<label class="layui-form-label">时间</label>
+				<div class="layui-input-inline">
+				  <input type="text" name="recordDate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+				</div>				
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">客户编号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="id" lay-verify="required" autocomplete="off" placeholder="请输入客户编号" class="layui-input">
+				</div>
+			</div>
+								
+			<div class="layui-form-item">
+				<label class="layui-form-label">地点</label>
+				<div class="layui-input-block">
+					<input type="text" name="location" lay-verify="" autocomplete="off" placeholder="请输入地点" class="layui-input">
+				</div>				
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">概要</label>
+				<div class="layui-input-block">
+					<input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入概要" class="layui-input">
+				</div>
+			</div>
+			
+			<div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">详细信息</label>
+			    <div class="layui-input-block">
+			      <textarea name="detail" placeholder="请输入详细信息" class="layui-textarea"></textarea>
+			    </div>
+			 </div>
+			  
+			<div class="layui-form-item" align="center" style="padding-right: 110px;margin-top: 10px;">
+				<div class="layui-input-block">
+					<button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddCustomer">立即提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
+
+		<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			layui.use(['form', 'jquery','laydate'], function() {
+				var form = layui.form
+				var $ = layui.jquery
+				var laydate = layui.laydate
+				laydate.render({
+				  elem: '#test1' //指定元素
+				});
+				form.render()
+				form.on('submit(btnSubmitAddCustomer)', function(data) {
+					console.log("1111");
+					if (form.verify()) {
+						$.ajax({
+							url: 'http://localhost:8080/contactRecord/insert',
+							type: 'POST',
+							dataType: 'JSON',
+							data: data.field,
+							success: function(obj) {
+								debugger;
+								var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+								parent.layer.close(index); //再执行关闭   
+								parent.table.reload('tabCustomer');
+							}
+						})
+						return false;
+					}					
+				});
+			})
+		</script>	
+	</body>
+</html>
