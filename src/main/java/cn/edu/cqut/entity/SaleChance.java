@@ -3,11 +3,12 @@ package cn.edu.cqut.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -50,39 +51,38 @@ public class SaleChance extends Model<SaleChance> {
 	private String founder;
 
 	@ApiModelProperty(value = "创建时间")
-	private LocalDateTime createTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date createTime;
 
 	@ApiModelProperty(value = "指派给")
 	private String toWhom;
 
 	@ApiModelProperty(value = "指派时间")
-	private LocalDateTime toWhomTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date toWhomTime;
 
 	@ApiModelProperty(value = "状态，0为已分配，1为位分配")
 	private Integer status;
 
-	public String getCusName() {
-		return cusName;
-	}
-
-	public void setCusName(String cusName) {
-		this.cusName = cusName;
-	}
-
-	public String getContactPhone() {
-		return contactPhone;
-	}
-
-	public void setContactPhone(String contactPhone) {
-		this.contactPhone = contactPhone;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
+	@Override
+	public String toString() {
+		return "SaleChance{" +
+				"id=" + id +
+				", cusName='" + cusName + '\'' +
+				", sourceOfOpportunity='" + sourceOfOpportunity + '\'' +
+				", contactPersonName='" + contactPersonName + '\'' +
+				", contactPhone='" + contactPhone + '\'' +
+				", chanceOfSuccess='" + chanceOfSuccess + '\'' +
+				", summary='" + summary + '\'' +
+				", opportunityDescription='" + opportunityDescription + '\'' +
+				", founder='" + founder + '\'' +
+				", createTime=" + createTime +
+				", toWhom='" + toWhom + '\'' +
+				", toWhomTime=" + toWhomTime +
+				", status=" + status +
+				'}';
 	}
 
 	public Integer getId() {
@@ -91,6 +91,14 @@ public class SaleChance extends Model<SaleChance> {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCusName() {
+		return cusName;
+	}
+
+	public void setCusName(String cusName) {
+		this.cusName = cusName;
 	}
 
 	public String getSourceOfOpportunity() {
@@ -109,11 +117,11 @@ public class SaleChance extends Model<SaleChance> {
 		this.contactPersonName = contactPersonName;
 	}
 
-	public String getcontactPhone() {
+	public String getContactPhone() {
 		return contactPhone;
 	}
 
-	public void setcontactPhone(String contactPhone) {
+	public void setContactPhone(String contactPhone) {
 		this.contactPhone = contactPhone;
 	}
 
@@ -149,11 +157,11 @@ public class SaleChance extends Model<SaleChance> {
 		this.founder = founder;
 	}
 
-	public LocalDateTime getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(LocalDateTime createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
@@ -165,33 +173,19 @@ public class SaleChance extends Model<SaleChance> {
 		this.toWhom = toWhom;
 	}
 
-	public LocalDateTime getToWhomTime() {
+	public Date getToWhomTime() {
 		return toWhomTime;
 	}
 
-	public void setToWhomTime(LocalDateTime toWhomTime) {
+	public void setToWhomTime(Date toWhomTime) {
 		this.toWhomTime = toWhomTime;
 	}
 
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
+	public Integer getStatus() {
+		return status;
 	}
 
-	@Override
-	public String toString() {
-		return "SaleChance{" +
-				"id=" + id +
-				", sourceOfOpportunity=" + sourceOfOpportunity +
-				", contactPersonName=" + contactPersonName +
-				", contact——phone=" + contactPhone +
-				", chanceOfSuccess=" + chanceOfSuccess +
-				", summary=" + summary +
-				", opportunityDescription=" + opportunityDescription +
-				", founder=" + founder +
-				", createTime=" + createTime +
-				", toWhom=" + toWhom +
-				", toWhomTime=" + toWhomTime +
-				"}";
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

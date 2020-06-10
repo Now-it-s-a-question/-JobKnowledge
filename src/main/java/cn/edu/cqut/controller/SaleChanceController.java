@@ -24,6 +24,7 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/saleChance")
 @Api("销售机会管理")
+@CrossOrigin
 public class SaleChanceController {
 	@Autowired
 	private SaleChanceService saleChanceService;
