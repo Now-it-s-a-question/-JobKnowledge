@@ -58,7 +58,7 @@ public class CustomerController {
 		//表里的记录总数
 		ret.setCount(pageCustomer.getTotal());
 		//这页的数据列表
-		ret.setEntityList(pageCustomer.getRecords());
+		ret.setData(pageCustomer.getRecords());
 		return ret;
 	}
 	

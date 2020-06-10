@@ -6,9 +6,9 @@ public class CrmResult<E> {
 	private Integer code;
 	private String msg;
 	private Long count;
-	private List<E> EntityList;
+	private List<E> data;
 	private E entity;
-	
+
 	public Integer getCode() {
 		return code;
 	}
@@ -27,11 +27,11 @@ public class CrmResult<E> {
 	public void setCount(Long count) {
 		this.count = count;
 	}
-	public List<E> getEntityList() {
-		return EntityList;
+	public List<E> getData() {
+		return data;
 	}
-	public void setEntityList(List<E> entityList) {
-		this.EntityList = entityList;
+	public void setData(List<E> data) {
+		this.data = data;
 	}
 
 	public E getEntity() {

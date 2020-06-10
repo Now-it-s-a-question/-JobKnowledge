@@ -55,6 +55,24 @@ public class SaleChance extends Model<SaleChance> {
     @ApiModelProperty(value = "指派时间")
     private LocalDateTime toWhomTime;
 
+    @ApiModelProperty(value = "状态，0为已分配，1为位分配")
+    private Integer status;
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;

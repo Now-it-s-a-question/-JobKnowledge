@@ -22,6 +22,7 @@ layui.use(['table','jquery'], function(){
     ,height: 'full-150'
     ,url: 'http://localhost:8080/customer/customers' //数据接口
     ,page: true //开启分页
+	   ,method:'get'
 	,toolbar:'#barCustomer'  //添加编辑工具栏按钮
 	,defaultToolbar:[] //去掉默认的工具栏按钮
 	,limits:[5,10,15,20]
@@ -32,9 +33,9 @@ layui.use(['table','jquery'], function(){
       ,{field: 'cusName', title: '客户名称'}
       ,{field: 'cusRegion', title: '客户区域', width:100}
       ,{field: 'cusAddr', title: '客户地址', width:100} ,
-	  ,{field: 'cusUrl', title: '客户网站', width:100} ,
-	  ,{field: 'cusLevel', title: '客户等级', width:100} ,
-	  ,{field: 'cusCredit', title: '信用等级',templet:function(item){
+	  {field: 'cusUrl', title: '客户网站', width:100} ,
+	  {field: 'cusLevel', title: '客户等级', width:100} ,
+	  {field: 'cusCredit', title: '信用等级',templet:function(item){
 		  if(item.cusCredit==='一级'){
 			  return '一等'
 		  }else{

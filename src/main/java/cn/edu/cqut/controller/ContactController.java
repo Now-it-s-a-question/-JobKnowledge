@@ -47,7 +47,7 @@ public class ContactController {
 		Page<Contact> contactPage = contactService.page(new Page<>(page, limit));
 		result.setCode(0);
 		result.setMsg("");
-		result.setEntityList(contactPage.getRecords());
+		result.setData(contactPage.getRecords());
 		return result;
 	}
 
