@@ -10,31 +10,31 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">客户名称</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusNo" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">机会来源</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="sourceOfOpportunity" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">联系人</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="contactPersonName" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">联系电话</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusAddr" lay-verify="" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="contactPhone" lay-verify="" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">成功几率</label>
 				<div class="layui-input-block">
-					<select name="cusCredit" lay-verify="required">
+					<select name="chanceOfSuccess" lay-verify="required">
 						<option value=""></option>
 						<option value="一级">10%</option>
 						<option value="二级">20%</option>
@@ -52,39 +52,45 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">概要</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="summary" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">机会描述</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="opportunityDescription" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">创建人</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="founder" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">			  
 				<label class="layui-form-label">创建时间</label>
 				<div class="layui-input-inline">
-				  <input type="text" name="recordDate" class="layui-input" id="test2" placeholder="yyyy-MM-dd">
+				  <input type="text" name="createTime" class="layui-input" id="test2" placeholder="yyyy-MM-dd">
 				</div>				
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">指派给</label>
 				<div class="layui-input-block">
-					<input type="text" name="cusUrl" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					<input type="text" name="toWhom" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
 				</div>
 			</div>
 		
 			<div class="layui-form-item">			  
 				<label class="layui-form-label">指派时间</label>
 				<div class="layui-input-inline">
-				  <input type="text" name="recordDate" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+				  <input type="text" name="toWhomTime" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
 				</div>				
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">销售状态</label>
+				<div class="layui-input-block">
+					<input type="text" name="status" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+				</div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
@@ -110,7 +116,7 @@
 				form.on('submit(btnSubmitAddCustomer)', function(data) {
 					if (form.verify()) {
 						$.ajax({
-							url: 'http://localhost:8080/customer/addCustomer',
+							url: 'http://localhost:8080/saleChance/insert',
 							type: 'POST',
 							dataType: 'JSON',
 							data: data.field,
