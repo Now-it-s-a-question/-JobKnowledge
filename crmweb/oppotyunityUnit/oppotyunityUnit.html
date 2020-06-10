@@ -15,12 +15,11 @@
 layui.use(['table','jquery'], function(){
   table = layui.table;
   var $ = layui.jquery;
-  
   //第一个实��
   table.render({
     elem: '#tabCustomer'
     ,height: 'full-150'
-    ,url: 'http://localhost:8080/saleChance/getList' //数据接口
+    ,url: 'http://localhost:8080/saleChance/getlist' //数据接口
 	//,url:'oppotyunityUnit/demo1.json'
     ,page: true //00
 	,toolbar:'#barCustomer'  //添加编辑工具栏按��
