@@ -11,176 +11,187 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Glorious
  * @since 2020-06-08
  */
-@ApiModel(value="SaleChance对象", description="")
+@ApiModel(value = "SaleChance对象", description = "")
 public class SaleChance extends Model<SaleChance> {
 
-    private static final long serialVersionUID=1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+	@TableId(value = "id", type = IdType.AUTO)
+	private Integer id;
+	@ApiModelProperty(value = "客户名称")
+	private String cusName;
 
-    @ApiModelProperty(value = "机会来源")
-    private String sourceOfOpportunity;
 
-    @ApiModelProperty(value = "联系人")
-    private String contactPersonName;
+	@ApiModelProperty(value = "机会来源")
+	private String sourceOfOpportunity;
 
-    @ApiModelProperty(value = "联系电话")
-    private String contactPhone;
+	@ApiModelProperty(value = "联系人")
+	private String contactPersonName;
 
-    @ApiModelProperty(value = "成功几率")
-    private String chanceOfSuccess;
+	@ApiModelProperty(value = "联系电话")
+	private String contactPhone;
 
-    @ApiModelProperty(value = "概要")
-    private String summary;
+	@ApiModelProperty(value = "成功几率")
+	private String chanceOfSuccess;
 
-    @ApiModelProperty(value = "机会描述")
-    private String opportunityDescription;
+	@ApiModelProperty(value = "概要")
+	private String summary;
 
-    @ApiModelProperty(value = "创建人")
-    private String founder;
+	@ApiModelProperty(value = "机会描述")
+	private String opportunityDescription;
 
-    @ApiModelProperty(value = "创建时间")
-    private LocalDateTime createTime;
+	@ApiModelProperty(value = "创建人")
+	private String founder;
 
-    @ApiModelProperty(value = "指派给")
-    private String toWhom;
+	@ApiModelProperty(value = "创建时间")
+	private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "指派时间")
-    private LocalDateTime toWhomTime;
+	@ApiModelProperty(value = "指派给")
+	private String toWhom;
 
-    @ApiModelProperty(value = "状态，0为已分配，1为位分配")
-    private Integer status;
+	@ApiModelProperty(value = "指派时间")
+	private LocalDateTime toWhomTime;
 
-    public String getContactPhone() {
-        return contactPhone;
-    }
+	@ApiModelProperty(value = "状态，0为已分配，1为位分配")
+	private Integer status;
 
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone;
-    }
+	public String getCusName() {
+		return cusName;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public void setCusName(String cusName) {
+		this.cusName = cusName;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public String getContactPhone() {
+		return contactPhone;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getSourceOfOpportunity() {
-        return sourceOfOpportunity;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-    public void setSourceOfOpportunity(String sourceOfOpportunity) {
-        this.sourceOfOpportunity = sourceOfOpportunity;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getContactPersonName() {
-        return contactPersonName;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setContactPersonName(String contactPersonName) {
-        this.contactPersonName = contactPersonName;
-    }
+	public String getSourceOfOpportunity() {
+		return sourceOfOpportunity;
+	}
 
-    public String getcontactPhone() {
-        return contactPhone;
-    }
+	public void setSourceOfOpportunity(String sourceOfOpportunity) {
+		this.sourceOfOpportunity = sourceOfOpportunity;
+	}
 
-    public void setcontactPhone(String contactPhone) {
-        this.contactPhone = contactPhone;
-    }
+	public String getContactPersonName() {
+		return contactPersonName;
+	}
 
-    public String getChanceOfSuccess() {
-        return chanceOfSuccess;
-    }
+	public void setContactPersonName(String contactPersonName) {
+		this.contactPersonName = contactPersonName;
+	}
 
-    public void setChanceOfSuccess(String chanceOfSuccess) {
-        this.chanceOfSuccess = chanceOfSuccess;
-    }
+	public String getcontactPhone() {
+		return contactPhone;
+	}
 
-    public String getSummary() {
-        return summary;
-    }
+	public void setcontactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
+	}
 
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
+	public String getChanceOfSuccess() {
+		return chanceOfSuccess;
+	}
 
-    public String getOpportunityDescription() {
-        return opportunityDescription;
-    }
+	public void setChanceOfSuccess(String chanceOfSuccess) {
+		this.chanceOfSuccess = chanceOfSuccess;
+	}
 
-    public void setOpportunityDescription(String opportunityDescription) {
-        this.opportunityDescription = opportunityDescription;
-    }
+	public String getSummary() {
+		return summary;
+	}
 
-    public String getFounder() {
-        return founder;
-    }
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 
-    public void setFounder(String founder) {
-        this.founder = founder;
-    }
+	public String getOpportunityDescription() {
+		return opportunityDescription;
+	}
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
+	public void setOpportunityDescription(String opportunityDescription) {
+		this.opportunityDescription = opportunityDescription;
+	}
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
+	public String getFounder() {
+		return founder;
+	}
 
-    public String getToWhom() {
-        return toWhom;
-    }
+	public void setFounder(String founder) {
+		this.founder = founder;
+	}
 
-    public void setToWhom(String toWhom) {
-        this.toWhom = toWhom;
-    }
+	public LocalDateTime getCreateTime() {
+		return createTime;
+	}
 
-    public LocalDateTime getToWhomTime() {
-        return toWhomTime;
-    }
+	public void setCreateTime(LocalDateTime createTime) {
+		this.createTime = createTime;
+	}
 
-    public void setToWhomTime(LocalDateTime toWhomTime) {
-        this.toWhomTime = toWhomTime;
-    }
+	public String getToWhom() {
+		return toWhom;
+	}
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
+	public void setToWhom(String toWhom) {
+		this.toWhom = toWhom;
+	}
 
-    @Override
-    public String toString() {
-        return "SaleChance{" +
-        "id=" + id +
-        ", sourceOfOpportunity=" + sourceOfOpportunity +
-        ", contactPersonName=" + contactPersonName +
-        ", contact——phone=" + contactPhone +
-        ", chanceOfSuccess=" + chanceOfSuccess +
-        ", summary=" + summary +
-        ", opportunityDescription=" + opportunityDescription +
-        ", founder=" + founder +
-        ", createTime=" + createTime +
-        ", toWhom=" + toWhom +
-        ", toWhomTime=" + toWhomTime +
-        "}";
-    }
+	public LocalDateTime getToWhomTime() {
+		return toWhomTime;
+	}
+
+	public void setToWhomTime(LocalDateTime toWhomTime) {
+		this.toWhomTime = toWhomTime;
+	}
+
+	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
+
+	@Override
+	public String toString() {
+		return "SaleChance{" +
+				"id=" + id +
+				", sourceOfOpportunity=" + sourceOfOpportunity +
+				", contactPersonName=" + contactPersonName +
+				", contact——phone=" + contactPhone +
+				", chanceOfSuccess=" + chanceOfSuccess +
+				", summary=" + summary +
+				", opportunityDescription=" + opportunityDescription +
+				", founder=" + founder +
+				", createTime=" + createTime +
+				", toWhom=" + toWhom +
+				", toWhomTime=" + toWhomTime +
+				"}";
+	}
 }
