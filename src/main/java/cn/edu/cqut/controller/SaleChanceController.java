@@ -4,6 +4,7 @@ package cn.edu.cqut.controller;
 import cn.edu.cqut.entity.SaleChance;
 import cn.edu.cqut.service.SaleChanceService;
 import cn.edu.cqut.util.CrmResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -56,10 +57,13 @@ public class SaleChanceController {
 			@RequestParam(defaultValue = "1") Integer page
 			,
 			@ApiParam(value = "要查询的页码", required = true)
-			@RequestParam(defaultValue = "10") Integer limit) {
+			@RequestParam(defaultValue = "10") Integer limit
+	,SaleChance saleChance) {
 
 		CrmResult<SaleChance> result = new CrmResult<>();
-		Page<SaleChance> chancePage = saleChanceService.page(new Page<>(page, limit));
+		QueryWrapper<SaleChance> wrapper = new QueryWrapper<>();
+		wrapper.lambda().eq(SaleChance::getStatus, saleChance.getStatus());
+		Page<SaleChance> chancePage = saleChanceService.page(new Page<>(page, limit),wrapper);
 		result.setCode(0);
 		result.setMsg("");
 		result.setData(chancePage.getRecords());

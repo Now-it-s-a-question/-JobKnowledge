@@ -26,6 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/customerPlan")
 @Api(tags = "客户开发计划管理")
+@CrossOrigin
 public class CustomerPlanController {
 	@Autowired
 	private CustomerPlanService customerPlanService;
