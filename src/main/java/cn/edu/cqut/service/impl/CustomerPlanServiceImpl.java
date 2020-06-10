@@ -5,7 +5,6 @@ import cn.edu.cqut.dao.CustomerPlanDao;
 import cn.edu.cqut.service.CustomerPlanService;
 import cn.edu.cqut.util.CrmResult;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,7 +23,7 @@ public class CustomerPlanServiceImpl extends ServiceImpl<CustomerPlanDao, Custom
     public CrmResult<CustomerPlan> getCustomerPlanById(int id) {
         CustomerPlan customerPlan = baseMapper.selectCustomerPlanById(id);
         CrmResult<CustomerPlan> result = new CrmResult<>();
-        result.setT(customerPlan);
+        result.setEntity(customerPlan);
         return result;
     }
 }

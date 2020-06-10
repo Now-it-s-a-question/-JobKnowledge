@@ -23,13 +23,13 @@ import java.util.Arrays;
  */
 @RestController
 @RequestMapping("/contactRecord")
-@Api(tags = "客户联系记录管理")
+@Api(tags = "客户交往记录管理")
 public class ContactRecordController {
 	@Autowired
 	private ContactRecordService contactRecordService;
 
 	@GetMapping("/remove")
-	@ApiOperation("删除客户联系记录")
+	@ApiOperation("删除客户交往记录")
 	private CrmResult<ContactRecord> remove(Integer[] ids) {
 		CrmResult<ContactRecord> result = new CrmResult<>();
 		contactRecordService.removeByIds(Arrays.asList(ids));
@@ -39,7 +39,7 @@ public class ContactRecordController {
 	}
 
 	@PostMapping("/insert")
-	@ApiOperation("新增客户联系记录")
+	@ApiOperation("新增客户交往记录")
 	private CrmResult<ContactRecord> insert(ContactRecord contactRecord) {
 		CrmResult<ContactRecord> result = new CrmResult<>();
 		contactRecordService.save(contactRecord);
@@ -49,7 +49,7 @@ public class ContactRecordController {
 	}
 
 	@PostMapping("/update")
-	@ApiOperation("根据id更新客户联系记录")
+	@ApiOperation("根据id更新客户交往记录")
 	private CrmResult<ContactRecord> update(ContactRecord contactRecord) {
 		CrmResult<ContactRecord> result = new CrmResult<>();
 		contactRecordService.updateById(contactRecord);
@@ -59,7 +59,7 @@ public class ContactRecordController {
 	}
 
 	@GetMapping("/contactRecords")
-	@ApiOperation("分页返回客户联系记录，默认第一页，每页10行")
+	@ApiOperation("分页返回客户交往记录，默认第一页，每页10行")
 	private CrmResult<ContactRecord> contactRecords(
 			@ApiParam(value = "要查询的页码",required = true)
 			@RequestParam(defaultValue = "1") Integer page
@@ -69,7 +69,7 @@ public class ContactRecordController {
 		CrmResult<ContactRecord> result = new CrmResult<>();
 		Page<ContactRecord> contactRecordPage = contactRecordService.page(new Page<>(page, limit));
 		result.setCode(0);
-		result.setData(contactRecordPage.getRecords());
+		result.setEntityList(contactRecordPage.getRecords());
 		return result;
 	}
 }

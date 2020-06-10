@@ -5,9 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -26,8 +27,9 @@ public class ContactRecord extends Model<ContactRecord> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @DateTimeFormat(pattern = "yyyy-DD-mm")
     @ApiModelProperty("客户交往记录时间")
-    private LocalDateTime recordDate;
+    private Date recordDate;
 
     @ApiModelProperty("客户交往记录地点")
     private String location;
@@ -47,11 +49,11 @@ public class ContactRecord extends Model<ContactRecord> {
         this.id = id;
     }
 
-    public LocalDateTime getRecordDate() {
+    public Date getRecordDate() {
         return recordDate;
     }
 
-    public void setRecordDate(LocalDateTime recordDate) {
+    public void setRecordDate(Date recordDate) {
         this.recordDate = recordDate;
     }
 
