@@ -103,31 +103,30 @@
 		<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			layui.use(['form', 'jquery','laydate' ], function() {
-				var form = layui.form
-				var $ = layui.jquery
-				var laydate = layui.laydate
+				var form = layui.form;
+				var $ = layui.jquery;
+				var laydate = layui.laydate;
 				laydate.render({
 				elem: '#test1' ,//指定元素
 				});
 				laydate.render({
 				elem: '#test2' ,//指定元素
 				});
-				form.render()
+				form.render();
 				form.on('submit(btnSubmitAddCustomer)', function(data) {
 					if (form.verify()) {
 						$.ajax({
-
 							url: 'http://localhost:8080/saleChance/insert',
 							type: 'POST',
 							dataType: 'JSON',
 							data: data.field,
 							success: function(obj) {
 								var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-								layer.msg(obj.Msg)
+								layer.msg(obj.Msg);
 								parent.layer.close(index); //再执行关闭   
 								parent.table.reload('tabCustomer');
 							}
-						})
+						});
 						return false;
 					}
 

@@ -6,8 +6,12 @@
     <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <input type="text" id="status" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
-    <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    <div class="layui-inline" style="float: right;padding-right: 0px;position: absolute;right: 15px;">
+        <div class="layui-inline">
+            <input type="text" id="id" placeholder="请输入查询内容" autocomplete="off" class="layui-input" style="height: 26px;">
+        </div>
+        <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    </div>
 </script>
 <script>
     var row = null
@@ -18,7 +22,7 @@
         //第一个实��
         table.render({
             elem: '#tabCustomer'
-            , height: 'full-150'
+            , height: 'full-160'
             , url: 'http://localhost:8080/saleChance/getlist' //数据接口
             //,url:'oppotyunityUnit/demo1.json'
             , page: true
@@ -33,7 +37,8 @@
                     },
                     {
                         field: "id",
-                        title: "编号"
+                        title: "编号",
+                        width: 100
                     },
                     {
                         field: 'cusName',
@@ -53,12 +58,12 @@
                     {
                         field: 'contactPhone',
                         title: '联系电话',
-                        width: 100
+                        width: 200
                     },
                     {
                         field: 'chanceOfSuccess',
                         title: '成功几率',
-                        width: 80
+                        width: 95
                     },
                     {
                         field: 'summary',
@@ -68,7 +73,7 @@
                     {
                         field: 'opportunityDescription',
                         title: '机会描述',
-                        width: 100
+                        width: 200
                     },
                     {
                         field: 'founder',
@@ -92,8 +97,8 @@
                     },
                     {
                         field: 'status',
-                        title: '销售状态',
-                        width: 100
+                        title: '销售状态(0为已分配，1为未分配)',
+                        width: 250
                     }
                 ]
             ]

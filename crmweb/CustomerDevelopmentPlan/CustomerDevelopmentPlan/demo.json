@@ -1,0 +1,14 @@
+{
+	"code":0,
+	"msg":"后台数据获取错误",
+	"count":15,
+	"data":[
+
+		{"cusNo":1,"cusName":"张三","cusAddr":"客户地址编号","cusCredit":"三级","cusLevel":"VIP客户","cusRegion":"西南","cusUrl":"www.cctv.com","id":1,"saleChanceId":"001", "planDate":"2020-06-10","plan":"计划1","status":"开发成功"},
+		{"cusNo":1,"cusName":"张三","cusAddr":"客户地址编号","cusCredit":"三级","cusLevel":"VIP客户","cusRegion":"西南","cusUrl":"www.cctv.com","id":1,"saleChanceId":"001", "planDate":"2020-06-10","plan":"计划1","status":"开发成功"},
+		{"cusNo":1,"cusName":"张三","cusAddr":"客户地址编号","cusCredit":"三级","cusLevel":"VIP客户","cusRegion":"西南","cusUrl":"www.cctv.com","id":1,"saleChanceId":"001", "planDate":"2020-06-10","plan":"计划1","status":"开发成功"},
+		{"cusNo":1,"cusName":"张三","cusAddr":"客户地址编号","cusCredit":"三级","cusLevel":"VIP客户","cusRegion":"西南","cusUrl":"www.cctv.com","id":1,"saleChanceId":"001", "planDate":"2020-06-10","plan":"计划1","status":"开发成功"},
+		{"cusNo":1,"cusName":"张三","cusAddr":"客户地址编号","cusCredit":"三级","cusLevel":"VIP客户","cusRegion":"西南","cusUrl":"www.cctv.com","id":1,"saleChanceId":"001", "planDate":"2020-06-10","plan":"计划1","status":"开发成功"}
+	]
+
+}

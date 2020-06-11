@@ -1,0 +1,11 @@
+{
+	"code":0,
+	"msg":"后台数据获取错误",
+	"count":15,
+	"data":[
+		{"cusNo":1,"cusName":"张三","cusSex":"男","cusAddr":"意向强烈","cusproduct":"产品1","cusCredit":"一级","cusLevel":"VIP客户",
+			"cusTime":"2020-06-10","cusState":"开发成功"},
+		{"cusNo":1,"cusName":"张三","cusSex":"男","cusAddr":"意向强烈","cusproduct":"产品1","cusCredit":"二级","cusLevel":"VIP客户","cusTime":"2020-06-10,","cusState":"开发失败"},
+		{"cusNo":1,"cusName":"张三","cusSex":"男","cusAddr":"意向强烈","cusproduct":"产品1","cusCredit":"三级","cusLevel":"VIP客户","cusTime":"2020-06-10","cusState":"未跟进"}
+	]
+}
