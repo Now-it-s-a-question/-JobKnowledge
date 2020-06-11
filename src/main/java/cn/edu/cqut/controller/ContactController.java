@@ -49,6 +49,9 @@ public class ContactController {
 		Page<Contact> contactPage = contactService.page(new Page<>(page, limit));
 		result.setCode(0);
 		result.setMsg("");
+		//表里的记录总数
+		result.setCount(contactPage.getTotal());
+		//这页的数据列表
 		result.setData(contactPage.getRecords());
 		return result;
 	}

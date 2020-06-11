@@ -77,6 +77,9 @@ public class ContactRecordController {
 		CrmResult<ContactRecord> result = new CrmResult<>();
 		Page<ContactRecord> contactRecordPage = contactRecordService.page(new Page<>(page, limit), wrapper);
 		result.setCode(0);
+		//表里的记录总数
+		result.setCount(contactRecordPage.getTotal());
+		//这页的数据列表
 		result.setData(contactRecordPage.getRecords());
 		return result;
 	}

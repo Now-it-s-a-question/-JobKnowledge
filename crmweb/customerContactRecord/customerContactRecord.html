@@ -1,5 +1,5 @@
 <div class="cusContactRecord">
-	<table id="tabCustomer" lay-filter="tabCustomer">
+	<table id="tabCustomer" lay-filter="tabCustomer" >
 	</table>
 </div>
 <script type="text/html" id="barCustomer">
@@ -8,10 +8,13 @@
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
   <div class="layui-inline" style="float: right;padding-right: 0px;position: absolute;right: 15px;">
 	  <div class="layui-inline">
-	  	  <input type="text" id="id" placeholder="请输入查询内容" autocomplete="off" class="layui-input" style="height: 26px;">
+		  <input type="text" id="id" placeholder="请输入客户编号" autocomplete="off" class="layui-input" style="height: 26px;">	  
 	  </div>	  
 	  <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
   </div>
+</script>
+<script type="text/html" id="barLookDetail">
+	<a class='layui-icon layui-icon-file-b' href='javascript:;' style='color:#009688;' lay-event='lookDetail'></a>	
 </script>
 <script>
 	var row = null
@@ -23,7 +26,7 @@ layui.use(['table','jquery'], function(){
   //第一个实例
   table.render({
     elem: '#tabCustomer'
-    ,height: 'full-160'
+    ,height: 'full-150'
 	/* ,url:'customer/demo.json' */
     ,url: 'http://localhost:8080/contactRecord/contactRecords' //数据接口 
     ,method:'GET'
@@ -35,12 +38,10 @@ layui.use(['table','jquery'], function(){
     ,cols: [[ //表头
 		{checkbox:true}
       ,{field: 'id', title: '客户编号', width:110,sort:true,align:'center'}
-      ,{field: 'recordDate', title: '时间', sort:true}
-      ,{field: 'location', title: '地点'} 
-	  ,{field: 'title', title: '概要'} 
-	  ,{field: 'detail', title: '详细信息', templet: function(){
-		  return "<a class='layui-icon layui-icon-file-b crm-menu' crmurl='customerContactRecord/customerContactRecordDetail.html' href='javascript:;' style='color:#009688;'></a>"
-	  }}  
+      ,{field: 'recordDate', title: '时间', sort:true,width:200}
+      ,{field: 'location', title: '地点',width:260} 
+	  ,{field: 'title', title: '概要',width:200} 
+	  ,{field: 'detail', title: '详细信息', toolbar:'#barLookDetail'}  
     ]],
   });   
   
@@ -113,11 +114,11 @@ layui.use(['table','jquery'], function(){
                 // }
               });
       break;
-	  
-	  case 'search':
-		table.reload('tabCustomer',{
-			where:{
-				id:$("#id").val()
+	   
+	  case 'search':	  
+		table.reload('tabCustomer',{			
+			where:{				
+				'id':$("#id").val()
 			},
 			page:{
 				curr:1
@@ -127,7 +128,25 @@ layui.use(['table','jquery'], function(){
     };
   });
   
-   
+  table.on('tool(tabCustomer)',function(obj){
+	  var data=obj.data;
+	  layEvent=obj.event;
+	  
+	  if(layEvent==='lookDetail'){
+		  layer.open({		       
+		          btn: '关闭'
+				  ,title: '客户交往详细信息'
+		          ,btnAlign: 'c' //按钮居中
+		          ,shade: 0.5 //不显示遮罩
+				  ,area: ['400px', '300px']
+				  ,content: '<div style="padding: 10px 10px;">'+ '<p/><b style="color:#009688;font-size:16px">客户编号：'+data.id+'</b></h2>'+ '<p style="color:#6F6F6F">时间：'+data.recordDate+'</p>' + '<p style="color:#6F6F6F">地点：'+data.location+'</p>' + '<p style="color:#6F6F6F">概要：'+data.title+'</p>' + '<p style="color:#6F6F6F">详细信息：'+data.detail+'</p>' +'</div>'
+		          ,yes: function(){
+		            layer.closeAll();
+		          }
+		        });
+	  }
+  })
+  
 });
 </script>
 

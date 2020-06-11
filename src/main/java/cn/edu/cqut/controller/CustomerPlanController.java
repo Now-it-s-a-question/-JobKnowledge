@@ -31,7 +31,7 @@ public class CustomerPlanController {
 	private CustomerPlanService customerPlanService;
 
 	@ApiOperation("删除客户开发计划")
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	private CrmResult<CustomerPlan> delete(Integer[] ids) {
 		CrmResult<CustomerPlan> result = new CrmResult<>();
 		customerPlanService.removeByIds(Arrays.asList(ids));
@@ -85,7 +85,7 @@ public class CustomerPlanController {
 	}
 
 	@ApiOperation("新增客户开发计划")
-	@PostMapping("/addcustomerplan")
+		@PostMapping("/addcustomerplan")
 	private CrmResult<CustomerPlan> addCustomerPlan(CustomerPlan customerPlan) {
 		customerPlanService.save(customerPlan);
 		CrmResult<CustomerPlan> result = new CrmResult<>();

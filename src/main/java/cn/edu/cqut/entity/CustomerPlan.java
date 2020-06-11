@@ -35,8 +35,8 @@ public class CustomerPlan extends Model<CustomerPlan> {
     private Integer id;
 
     @ApiModelProperty("客户开发计划时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date planDate;
 
     @ApiModelProperty("客户开发计划详情")
@@ -44,16 +44,16 @@ public class CustomerPlan extends Model<CustomerPlan> {
 
     @ApiModelProperty("客户开发状态")
     private String status;
-    @TableField(exist = false)
-    private List<Customer> customers;
+//    @TableField(exist = false)
+//    private List<Customer> customers;
 
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
-    }
+//    public List<Customer> getCustomers() {
+//        return customers;
+//    }
+//
+//    public void setCustomers(List<Customer> customers) {
+//        this.customers = customers;
+//    }
 
     public Integer getId() {
         return id;
