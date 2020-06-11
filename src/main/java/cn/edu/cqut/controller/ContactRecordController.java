@@ -4,6 +4,7 @@ package cn.edu.cqut.controller;
 import cn.edu.cqut.entity.ContactRecord;
 import cn.edu.cqut.service.ContactRecordService;
 import cn.edu.cqut.util.CrmResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -62,13 +63,19 @@ public class ContactRecordController {
 	@GetMapping("/contactRecords")
 	@ApiOperation("分页返回客户交往记录，默认第一页，每页10行")
 	private CrmResult<ContactRecord> contactRecords(
-			@ApiParam(value = "要查询的页码",required = true)
+			@ApiParam(value = "要查询的页码", required = true)
 			@RequestParam(defaultValue = "1") Integer page
 			,
-			@ApiParam(value = "要查询的页码",required = true)
-			@RequestParam(defaultValue = "10") Integer limit) {
+			@ApiParam(value = "要查询的页码", required = true)
+			@RequestParam(defaultValue = "10") Integer limit
+			,
+			ContactRecord contactRecord) {
+		QueryWrapper<ContactRecord> wrapper = new QueryWrapper<>();
+		if (contactRecord.getId() != null) {
+			wrapper.lambda().eq(ContactRecord::getId, contactRecord.getId());
+		}
 		CrmResult<ContactRecord> result = new CrmResult<>();
-		Page<ContactRecord> contactRecordPage = contactRecordService.page(new Page<>(page, limit));
+		Page<ContactRecord> contactRecordPage = contactRecordService.page(new Page<>(page, limit), wrapper);
 		result.setCode(0);
 		result.setData(contactRecordPage.getRecords());
 		return result;

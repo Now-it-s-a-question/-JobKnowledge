@@ -4,6 +4,7 @@ package cn.edu.cqut.controller;
 import cn.edu.cqut.entity.SaleChance;
 import cn.edu.cqut.service.SaleChanceService;
 import cn.edu.cqut.util.CrmResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +25,7 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/saleChance")
 @Api("销售机会管理")
+@CrossOrigin
 public class SaleChanceController {
 	@Autowired
 	private SaleChanceService saleChanceService;
@@ -32,7 +34,12 @@ public class SaleChanceController {
 	@GetMapping("/delete")
 	private CrmResult<SaleChance> delete(Integer[] ids) {
 		CrmResult<SaleChance> result = new CrmResult<>();
-		saleChanceService.removeByIds(Arrays.asList(ids));
+		boolean isDelete = saleChanceService.removeByIds(Arrays.asList(ids));
+		if (!isDelete) {
+			result.setCode(-1);
+			result.setMsg("删除失败");
+			return result;
+		}
 		result.setCode(0);
 		result.setMsg("删除成功");
 		return result;
@@ -42,7 +49,12 @@ public class SaleChanceController {
 	@PostMapping("/update")
 	private CrmResult<SaleChance> update(SaleChance saleChance) {
 		CrmResult<SaleChance> result = new CrmResult<>();
-		saleChanceService.updateById(saleChance);
+		boolean isSave = saleChanceService.updateById(saleChance);
+		if (!isSave) {
+			result.setCode(-1);
+			result.setMsg("修改失败");
+			return result;
+		}
 		result.setCode(0);
 		result.setMsg("修改成功");
 		return result;
@@ -55,12 +67,19 @@ public class SaleChanceController {
 			@RequestParam(defaultValue = "1") Integer page
 			,
 			@ApiParam(value = "要查询的页码", required = true)
-			@RequestParam(defaultValue = "10") Integer limit) {
-
+			@RequestParam(defaultValue = "10") Integer limit
+	,SaleChance saleChance) {
 		CrmResult<SaleChance> result = new CrmResult<>();
-		Page<SaleChance> chancePage = saleChanceService.page(new Page<>(page, limit));
+		QueryWrapper<SaleChance> wrapper = new QueryWrapper<>();
+		if (saleChance.getStatus() != null) {
+			wrapper.lambda().like(SaleChance::getStatus, saleChance.getStatus());
+		}
+		Page<SaleChance> chancePage = saleChanceService.page(new Page<>(page, limit),wrapper);
 		result.setCode(0);
 		result.setMsg("");
+		//表里的记录总数
+		result.setCount(chancePage.getTotal());
+		//这页的数据列表
 		result.setData(chancePage.getRecords());
 		return result;
 	}
