@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,12 +34,9 @@ public class CustomerPlan extends Model<CustomerPlan> {
     @TableField("id")
     private Integer id;
 
-    @ApiModelProperty("销售计划Id,外键")
-    @TableField("sale_chance_id")
-    private Integer saleChanceId;
-
     @ApiModelProperty("客户开发计划时间")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date planDate;
 
     @ApiModelProperty("客户开发计划详情")
@@ -65,13 +63,6 @@ public class CustomerPlan extends Model<CustomerPlan> {
         this.id = id;
     }
 
-    public Integer getSaleChanceId() {
-        return saleChanceId;
-    }
-
-    public void setSaleChanceId(Integer saleChanceId) {
-        this.saleChanceId = saleChanceId;
-    }
 
     public Date getPlanDate() {
         return planDate;
@@ -106,7 +97,6 @@ public class CustomerPlan extends Model<CustomerPlan> {
     public String toString() {
         return "CustomerPlan{" +
         "id=" + id +
-        ", saleChanceId=" + saleChanceId +
         ", planDate=" + planDate +
         ", plan=" + plan +
         ", status=" + status +

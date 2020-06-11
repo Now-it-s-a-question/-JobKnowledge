@@ -34,7 +34,12 @@ public class SaleChanceController {
 	@GetMapping("/delete")
 	private CrmResult<SaleChance> delete(Integer[] ids) {
 		CrmResult<SaleChance> result = new CrmResult<>();
-		saleChanceService.removeByIds(Arrays.asList(ids));
+		boolean isDelete = saleChanceService.removeByIds(Arrays.asList(ids));
+		if (!isDelete) {
+			result.setCode(-1);
+			result.setMsg("删除失败");
+			return result;
+		}
 		result.setCode(0);
 		result.setMsg("删除成功");
 		return result;
@@ -44,7 +49,12 @@ public class SaleChanceController {
 	@PostMapping("/update")
 	private CrmResult<SaleChance> update(SaleChance saleChance) {
 		CrmResult<SaleChance> result = new CrmResult<>();
-		saleChanceService.updateById(saleChance);
+		boolean isSave = saleChanceService.updateById(saleChance);
+		if (!isSave) {
+			result.setCode(-1);
+			result.setMsg("修改失败");
+			return result;
+		}
 		result.setCode(0);
 		result.setMsg("修改成功");
 		return result;

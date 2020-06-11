@@ -30,55 +30,71 @@
                 [ //表头
                     {
                         checkbox: true
-                    }, {
-                    field: 'cusName',
-                    title: '客户名称',
-                    width: 100
-                }, {
-                    field: 'sourceOfOpportunity',
-                    title: '机会来源',
-                    width: 100
-                }, {
-                    field: 'contactPersonName',
-                    title: '联系人',
-                    width: 100
-                }, {
-                    field: 'contactPhone',
-                    title: '联系电话',
-                    width: 100
-                }, {
-                    field: 'chanceOfSuccess',
-                    title: '成功几率',
-                    width: 100
-                }, {
-                    field: 'summary',
-                    title: '概要',
-                    width: 100
-                }, {
-                    field: 'opportunityDescription',
-                    title: '机会描述',
-                    width: 100
-                }, {
-                    field: 'founder',
-                    title: '创建人',
-                    width: 100
-                }, {
-                    field: 'createTime',
-                    title: '创建时间',
-                    width: 100
-                }, {
-                    field: 'toWhom',
-                    title: '指派给',
-                    width: 100
-                }, {
-                    field: 'toWhomTime',
-                    title: '指派时间',
-                    width: 100
-                }, {
-                    field: 'status',
-                    title: '销售状态',
-                    width: 100
-                }
+                    },
+                    {
+                        field: "id",
+                        title: "编号"
+                    },
+                    {
+                        field: 'cusName',
+                        title: '客户名称',
+                        width: 100
+                    },
+                    {
+                        field: 'sourceOfOpportunity',
+                        title: '机会来源',
+                        width: 100
+                    },
+                    {
+                        field: 'contactPersonName',
+                        title: '联系人',
+                        width: 100
+                    },
+                    {
+                        field: 'contactPhone',
+                        title: '联系电话',
+                        width: 100
+                    },
+                    {
+                        field: 'chanceOfSuccess',
+                        title: '成功几率',
+                        width: 80
+                    },
+                    {
+                        field: 'summary',
+                        title: '概要',
+                        width: 100
+                    },
+                    {
+                        field: 'opportunityDescription',
+                        title: '机会描述',
+                        width: 100
+                    },
+                    {
+                        field: 'founder',
+                        title: '创建人',
+                        width: 80
+                    },
+                    {
+                        field: 'createTime',
+                        title: '创建时间',
+                        width: 100
+                    },
+                    {
+                        field: 'toWhom',
+                        title: '指派给',
+                        width: 100
+                    },
+                    {
+                        field: 'toWhomTime',
+                        title: '指派时间',
+                        width: 100
+                    },
+                    {
+                        field: 'status',
+                        title: '销售状态',
+                        width: 100
+                    }
                 ]
             ]
         });
@@ -109,12 +125,12 @@
                     layer.confirm('确认要删除选中的这行吗？', function (index) {
                         var ids = []
                         for (var i = 0; i < checkStatus.data.length; i++) {
-                            ids.push(checkStatus.data[i].cusNo)
+                            ids.push(checkStatus.data[i].id)
                         }
 
                         $.ajax({
-                            url: 'http://localhost:8080/customer/delCustomer',
-                            type: 'POST',
+                            url: 'http://localhost:8080/saleChance/delete',
+                            type: 'GET',
                             dataType: 'JSON',
                             data: {
                                 ids: ids.join(",")

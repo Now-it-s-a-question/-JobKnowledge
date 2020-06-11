@@ -4,6 +4,7 @@ package cn.edu.cqut.controller;
 import cn.edu.cqut.entity.CustomerPlan;
 import cn.edu.cqut.service.CustomerPlanService;
 import cn.edu.cqut.util.CrmResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,9 +12,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * <p>
@@ -32,7 +31,7 @@ public class CustomerPlanController {
 	private CustomerPlanService customerPlanService;
 
 	@ApiOperation("删除客户开发计划")
-	@PostMapping("delete")
+	@PostMapping("/delete")
 	private CrmResult<CustomerPlan> delete(Integer[] ids) {
 		CrmResult<CustomerPlan> result = new CrmResult<>();
 		customerPlanService.removeByIds(Arrays.asList(ids));
@@ -42,7 +41,7 @@ public class CustomerPlanController {
 	}
 
 	@ApiOperation("根据id更新数据开发计划")
-	@PostMapping("update")
+	@PostMapping("/update")
 	private CrmResult<CustomerPlan> update(CustomerPlan customerPlan) {
 		CrmResult<CustomerPlan> result = new CrmResult<>();
 		customerPlanService.updateById(customerPlan);
@@ -52,16 +51,28 @@ public class CustomerPlanController {
 	}
 
 	@ApiOperation("分页返回客户开发计划，默认第一页，每页默认10行")
-	@GetMapping("customerPlans")
-	private List<CustomerPlan> customerPlans(
+	@GetMapping("/customerPlans")
+	private CrmResult<CustomerPlan> customerPlans(
 			@ApiParam(value = "要查询的页码", required = true)
 			@RequestParam(defaultValue = "1") Integer page
 			,
 			@ApiParam(value = "要查询的页码", required = true)
-			@RequestParam(defaultValue = "10") Integer limit) {
+			@RequestParam(defaultValue = "10") Integer limit
+			,
+			CustomerPlan customerPlan) {
 
-		Page<CustomerPlan> pageCustomer = customerPlanService.page(new Page<>(page, limit));
-		return new ArrayList<>(pageCustomer.getRecords());
+		CrmResult<CustomerPlan> result = new CrmResult<>();
+		QueryWrapper<CustomerPlan> wrapper = new QueryWrapper<>();
+		if (customerPlan.getStatus() != null) {
+			wrapper.lambda().like(CustomerPlan::getStatus, customerPlan.getStatus());
+		}
+		Page<CustomerPlan> planPage = customerPlanService.page(
+				new Page<>(page, limit), wrapper);
+		result.setCode(0);
+		result.setMsg("");
+		result.setData(planPage.getRecords());
+		result.setCount(planPage.getTotal());
+		return result;
 	}
 
 	@ApiOperation("根据id返回客户开发计划")
