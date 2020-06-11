@@ -10,20 +10,6 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">XX公司CRM管理系统</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <!-- <ul class="layui-nav layui-layout-left">
-          <li class="layui-nav-item"><a href="">控制台</a></li>
-          <li class="layui-nav-item"><a href="">商品管理</a></li>
-          <li class="layui-nav-item"><a href="">用户</a></li>
-          <li class="layui-nav-item">
-            <a href="javascript:;">其它系统</a>
-            <dl class="layui-nav-child">
-              <dd><a href="">邮件管理</a></dd>
-              <dd><a href="">消息管理</a></dd>
-              <dd><a href="">授权管理</a></dd>
-            </dl>
-          </li>
-        </ul> -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -47,9 +33,9 @@
                     <a class="" href="javascript:;">客户管理</a>
                     <dl class="layui-nav-child">
                         <dd><a class="crm-menu" crmurl="customer/customerlist.html" href="javascript:;">客户信息</a></dd>
-                        <dd><a class="crm-menu" crmurl="manageCustomerContacts/manageCustomerContactsList.html"
-                               href="javascript:;">客户联系人</a>
-                        </dd>
+<!--                        <dd><a class="crm-menu" crmurl="manageCustomerContacts/manageCustomerContactsList.html"-->
+<!--                               href="javascript:;">客户联系人</a>-->
+<!--                        </dd>-->
                         <dd><a class="crm-menu" crmurl="customerContactRecord/customerContactRecord.html"
                                href="javascript:;">客户交往记录</a></dd>
                     </dl>
@@ -70,7 +56,22 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div id="crm-content" style="padding: 15px;">内容主体区域</div>
+        <div id="crm-content" style="padding: 15px;">
+            <!-- 首页轮播 -->
+            <div style="margin-top: 15px;box-shadow: 0px 0px 15px #D2CECE;">
+                <div style="border-bottom: 1px solid #F0F0F0;padding: 10px;">
+                    数据概览
+                </div>
+                <!-- 轮播开始 -->
+                <div class="layui-carousel" id="test2">
+                    <div carousel-item>
+                        <!-- 中国地图-->
+                        <div id="carouselMap" ></div>
+                        <div id="main" style="width: 1670px;height: 700px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="layui-footer">
@@ -78,12 +79,16 @@
         © layui.com - 底部固定区域
     </div>
 </div>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+<script src="layui/echarts/china.js"></script>
 <script src="layui/layui.js"></script>
 <script>
     //JavaScript代码区域
-    layui.use(['element', 'jquery'], function () {
+    layui.use(['element', 'jquery','carousel', 'form'], function () {
         var element = layui.element;
-        var $ = layui.jquery
+        var $ = layui.jquery;
+        var carousel = layui.carousel;
+        var form = layui.form;
         //给菜单添加单击事件
         $('.crm-menu').click(function () {
             //jQuery的ajax异步请求，第一个参数是请求的页面；
@@ -92,8 +97,208 @@
                 //把请求的页面填充到内容区域
                 $('.layui-body').children(0).html(obj)
             })
-        })
+        });
+        //轮播设置
+        carousel.render({
+            elem: '#test2'
+            ,interval: 5000
+            ,anim: 'fade'
+            ,height: '750px',
+            autoplay:true,
+            arrow:'none',
+            width:'1690px'
+        });
+
+        //获取柱形图
+        getCarouselColumn();
+        //获取中国地图
+        getCarouselMap();
+
     });
+</script>
+
+<script>
+    /* 柱形图方法 */
+    function getCarouselColumn (){
+        var myChart = echarts.init(document.getElementById('main'));
+
+        myChart.setOption({
+            title: {
+                text: '各地区近两月客户量排行',
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['前两月', '前一月']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            calculable: true,
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['北京', '上海', '广东', '浙江', '湖南', '湖北', '四川', '江西', '福建', '香港', '澳门', '重庆']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '前两月',
+                    type: 'bar',
+                    color: ['#009688'],
+                    data: [175, 67, 205.9, 180, 79, 212.2, 135.6, 162.2, 102.6, 190.0, 161.4, 93.3],
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                },
+                {
+                    name: '前一月',
+                    type: 'bar',
+                    color: ['#A0E1DD'],
+                    data: [185.5, 107, 225.9, 160, 119, 162.2, 165.6, 112.2, 202.6, 160.0, 141.4, 193.3],
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                            /* {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
+                            {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3} */
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]
+        });
+
+
+
+    }
+    <!-- 中国地图方法 -->
+    function getCarouselMap(){
+        var carouselMap = echarts.init(document.getElementById('carouselMap'));
+        var dataList=[
+            {name:"南海诸岛",value:0},
+            {name: '北京', value: randomValue()},
+            {name: '天津', value: randomValue()},
+            {name: '上海', value: randomValue()},
+            {name: '重庆', value: randomValue()},
+            {name: '河北', value: randomValue()},
+            {name: '河南', value: randomValue()},
+            {name: '云南', value: randomValue()},
+            {name: '辽宁', value: randomValue()},
+            {name: '黑龙江', value: randomValue()},
+            {name: '湖南', value: randomValue()},
+            {name: '安徽', value: randomValue()},
+            {name: '山东', value: randomValue()},
+            {name: '新疆', value: randomValue()},
+            {name: '江苏', value: randomValue()},
+            {name: '浙江', value: randomValue()},
+            {name: '江西', value: randomValue()},
+            {name: '湖北', value: randomValue()},
+            {name: '广西', value: randomValue()},
+            {name: '甘肃', value: randomValue()},
+            {name: '山西', value: randomValue()},
+            {name: '内蒙古', value: randomValue()},
+            {name: '陕西', value: randomValue()},
+            {name: '吉林', value: randomValue()},
+            {name: '福建', value: randomValue()},
+            {name: '贵州', value: randomValue()},
+            {name: '广东', value: randomValue()},
+            {name: '青海', value: randomValue()},
+            {name: '西藏', value: randomValue()},
+            {name: '四川', value: randomValue()},
+            {name: '宁夏', value: randomValue()},
+            {name: '海南', value: randomValue()},
+            {name: '台湾', value: randomValue()},
+            {name: '香港', value: randomValue()},
+            {name: '澳门', value: randomValue()}
+        ]
+        function randomValue() {
+            return Math.round(Math.random()*1000);
+        }
+        carouselMap.setOption({
+            tooltip: {
+                formatter:function(params,ticket, callback){
+                    return params.seriesName+'<br />'+params.name+'：'+params.value
+                }//数据格式化
+            },
+            title:{
+                text:"全国各省份客户量概览",
+                left:'60px',
+                top:'40px'
+            },
+            visualMap: {
+                min: 0,
+                max: 1500,
+                left: 'left',
+                top: 'bottom',
+                text: ['高','低'],//取值范围的文字
+                inRange: {
+                    color: ['#e0ffff', '#009688']//取值范围的颜色
+                },
+                show:true//图注
+            },
+            geo: {
+                map: 'china',
+                roam: false,//不开启缩放和平移
+                zoom:1.23,//视角缩放比例
+                label: {
+                    normal: {
+                        show: true,
+                        fontSize:'10',
+                        color: 'rgba(0,0,0,0.7)'
+                    }
+                },
+                itemStyle: {
+                    normal:{
+                        borderColor: 'rgba(0, 0, 0, 0.2)'
+                    },
+                    emphasis:{
+                        areaColor: '#F3B329',//鼠标选择区域颜色
+                        shadowOffsetX: 0,
+                        shadowOffsetY: 0,
+                        shadowBlur: 20,
+                        borderWidth: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            },
+            series : [
+                {
+                    name: '客户量',
+                    type: 'map',
+                    geoIndex: 0,
+                    data:dataList
+                }
+            ]
+        });
+        /* carouselMap.on('click', function (params) {
+            alert(params.name);
+        });	 */
+    }
 </script>
 </body>
 </html>

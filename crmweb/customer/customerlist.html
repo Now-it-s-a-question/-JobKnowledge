@@ -32,12 +32,12 @@
             , limit: 5
             , cols: [[ //表头
                 {checkbox: true},
-                {field: 'cusNo', title: '客户编号', width: 100},
-                {field: 'cusName', title: '客户名称', width: 100},
-                {field: 'cusRegion', title: '客户区域', width: 100},
-                {field: 'cusAddr', title: '客户地址', width: 100},
-                {field: 'cusUrl', title: '客户网站', width: 100},
-                {field: 'cusLevel', title: '客户等级', width: 100},
+                {field: 'cusNo', title: '客户编号', width: 150},
+                {field: 'cusName', title: '客户名称', width: 150},
+                {field: 'cusRegion', title: '客户区域', width: 200},
+                {field: 'cusAddr', title: '客户地址', width: 300},
+                {field: 'cusUrl', title: '客户网站', width: 350},
+                {field: 'cusLevel', title: '客户等级', width: 150},
                 {
                     field: 'cusCredit', title: '信用等级', templet: function (item) {
                         if (item.cusCredit == '一级') {
@@ -45,9 +45,9 @@
                         } else {
                             return item.cusCredit
                         }
-                    }, width: 100
+                    }, width: 150
                 },
-                {field: 'operation', title: '联系人', width: 100, toolbar: '#operationBarCustomer'}
+                {field: 'operation', title: '联系人', width: 200, toolbar: '#operationBarCustomer'}
             ]]
         });
 

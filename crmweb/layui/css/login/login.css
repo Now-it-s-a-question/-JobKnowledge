@@ -1,0 +1,103 @@
+body{	
+	padding: 0px;
+	margin: 0px;	
+}
+.loginMain{
+	width: 100%;
+	height: 100%;
+	/* background: -webkit-linear-gradient(top,#A7ECE6,#009688) no-repeat; */
+	background: -webkit-linear-gradient(top,#FAFAFA,#DCDCDC) no-repeat;
+	position: absolute;
+}
+.loginForm{
+	padding: 20px 80px 20px 60px;
+	width: 340px;
+	height: 340px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	position: absolute;
+	margin-left: -250px;
+	margin-top: -190px;
+	left: 50%;
+	top: 50%;
+}
+.loginLogo{
+	margin-top: -44px;
+	position: absolute;
+	margin-left: 90px;
+	width: 160px;
+}
+.formLogin{
+	margin-top: 40px;
+	padding: 0px 80px;
+}
+.formLoginPwd{
+	float: left;
+	font-size: 14px;
+	color: #009688;
+}
+.formLoginNoPwd{
+	float: right;
+	font-size: 14px;
+	color: #888888;
+}
+form{
+	padding-top: 50px;
+}
+input{
+	padding: 0px 0px 4px 0px;
+	margin-bottom: 16px;
+	border: 0px;
+	border-bottom: 1px solid #C0C4CC;
+	width: 100%;
+}
+.formInputUserName{
+	margin-bottom: 40px;
+}
+.formForget a{
+	font-size: 14px;
+	color: #888888;
+}
+.formRegister{
+	float: left;
+}
+.formForgetPwd{
+	float: right;
+}
+.formSubmit{
+	width: 100%;
+	margin-top: 36px;
+}
+.formSubmitBtn{
+	width: 100%;
+	height: 46px;
+	border: 0px;
+	border-radius: 5px;
+	background-color: #C2C2C2;
+	color: white;
+}
+.loginIcon{
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	padding: 0px 20px;
+}
+.loginIcon span{
+	font-size: 34px;
+	color: #C2C2C2;
+}
+.loginIconQQ{
+	float: left;
+}
+.loginIconQQ:hover{
+	color: #1E9FFF;
+}
+.loginIconWechat:hover{
+	color: #5FB878;
+}
+.loginIconWeibo:hover{
+	color: #FF5722;
+}
+.loginIconWeibo{
+	float: right;
+}

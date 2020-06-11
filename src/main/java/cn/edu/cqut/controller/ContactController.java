@@ -4,6 +4,7 @@ package cn.edu.cqut.controller;
 import cn.edu.cqut.entity.Contact;
 import cn.edu.cqut.service.IContactService;
 import cn.edu.cqut.util.CrmResult;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -74,9 +75,17 @@ public class ContactController {
 
 	@GetMapping("remove")
 	@ApiOperation("删除客户联系人")
-	private CrmResult<Contact> remove(Integer[] ids) {
+	private CrmResult<Contact> remove(String[] ids) {
 		CrmResult<Contact> result = new CrmResult<>();
 		contactService.removeByIds(Arrays.asList(ids));
+//		for (int i = 0; i < ids.length; i++) {
+//			contactService.remove(new QueryWrapper<Contact>().eq("cosNo",ids.ge));
+//		}
+//		if (!success){
+//			result.setCode(-1);
+//			result.setMsg("失败");
+//			return result;
+//		}
 		result.setMsg("删除成功");
 		result.setCode(0);
 		return result;
