@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../layui/css/layui.css" />
+</head>
+<body style="padding: 10px;">
+<form class="layui-form" lay-filter='formAddCustomer' action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人编号</label>
+        <div class="layui-input-block">
+            <input type="text" name="ctId" lay-verify="required" autocomplete="off" placeholder="请输入联系人编号" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="ctName" lay-verify="required" autocomplete="off" placeholder="请输入联系人姓名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人性别</label>
+        <div class="layui-input-block">
+            <select name="text" lay-verify="required">
+                <option value="">请选择</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人电话</label>
+        <div class="layui-input-block">
+            <input type="text" name="ctPhone" lay-verify="" autocomplete="off" placeholder="请输入联系人电话" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人备注</label>
+        <div class="layui-input-block">
+            <input type="text" name="ctMemo" lay-verify="required" autocomplete="off" placeholder="请输入联系人备注" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人职位</label>
+        <div class="layui-input-block">
+            <select name="ctTitle" lay-verify="required">
+                <option value="">请选择</option>
+                <option value="职员">职员</option>
+                <option value="经理">经理</option>
+                <option value="总经理">总经理</option>
+                <option value="总监">总监</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="btnSubmitAddContact">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form', 'jquery'], function() {
+        var form = layui.form
+        var $ = layui.jquery
+        form.render()
+        form.on('submit(btnSubmitAddContact)', function(data) {
+            if (form.verify()) {
+                $.ajax({
+                    url: 'http://localhost:8080/contact/insert',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: data.field,
+                    success: function(obj) {
+                    // debugger;
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        parent.layer.close(index); //再执行关闭
+                        parent.table.reload('tabManageCustomer');
+                    }
+                })
+                return false;
+            }
+
+        });
+
+    })
+</script>
+</body>
+</html>

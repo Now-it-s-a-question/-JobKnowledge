@@ -1,0 +1,122 @@
+<!-- 第一步：编写模版。你可以使用一个script标签存放模板，如： -->
+<script id="demo" type="text/html">
+	<h3>{{ d.title }}</h3>
+    <ul>
+        {{# layui.each(d.list, function(index, item){ }}
+        <li>
+            <span>{{ item.modname }}</span>
+            <span>{{ item.alias }}：</span>
+            <span>{{ item.site || '' }}</span>
+        </li>
+        {{# }); }}
+
+        {{# if(d.list.length === 0){ }}
+        无数据
+        {{# } }}
+    </ul>
+	
+	{{# layui.each(d.list, function(index, item){ }}
+		  <div class="layui-colla-item">
+		  	<h2 class="layui-colla-title">联系人二：{{ item.ctName }} / {{ item.ctId }}</h2>
+		  	<div class="layui-colla-content">
+		  		<form class="layui-form" action="">
+		  			<div class="layui-form-item">
+		  				<label class="layui-form-label">联系人姓名</label>
+		  				<div class="layui-input-block">
+		  					<input type="text" name="title" value={{ item.ctName }} required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+		  				</div>
+		  			</div>
+		  			<div class="layui-form-item">
+		  				<label class="layui-form-label">联系人编号</label>
+		  				<div class="layui-input-block">
+		  					<input type="text" name="title" value={{ item.ctId }}  required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+		  				</div>
+		  			</div>
+		  			<div class="layui-form-item">
+		  				<label class="layui-form-label">联系人电话</label>
+		  				<div class="layui-input-block">
+		  					<input type="text" name="title" value={{ item.ctPhone}}  required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+		  				</div>
+		  			</div>
+		  			<div class="layui-form-item">
+		  				<label class="layui-form-label">联系人职位</label>
+		  				<div class="layui-input-block">
+		  					<select name="city" value={{ item.ctTitle}}  class="layui-select-contacts" lay-verify="required">
+		  						<option value="">请选择</option>
+		  						<option value="置业实习">置业实习</option>
+		  						<option value="置业精英">置业精英</option>
+		  						<option value="置业月冠军">置业月冠军</option>
+		  						<option value="置业王者">置业王者</option>
+		  					</select>
+		  				</div>
+		  			</div>
+		  			<div class="layui-form-item">
+		  				<label class="layui-form-label">联系人性别</label>
+		  				<div class="layui-input-block" style="height: 36px;line-height: 36px;">
+		  					<select name="city" value={{ item.ctGender}}  class="layui-select-contacts" lay-verify="required">
+		  						<option value="">请选择</option>
+		  						<option value="男">男</option>
+		  						<option value="女">女</option>
+		  					</select>
+		  				</div>
+		  			</div>
+		  			<div class="layui-form-item layui-form-text">
+		  				<label class="layui-form-label">备注</label>
+		  				<div class="layui-input-block">
+		  					<textarea name="desc" value={{ item.ctMemo}} placeholder="请输入内容" class="layui-textarea"></textarea>
+		  				</div>
+		  			</div>
+		  			<div class="layui-form-item">
+		  				<div class="layui-input-block" style="position: relative;">
+		  					<button type="button" style="float: left;" class="layui-btn layui-btn-normal" id="edit">编辑</button>
+		  					<button class="layui-btn" id="btn" style="display: none;float: left;" lay-submit lay-filter="formDemo">立即提交</button>
+		  					<button type="button" id="cancel" style="display: none;float: left;" class="layui-btn layui-btn-primary">取消</button>
+		  					<button type="button" id="del" style="float: left;" class="layui-btn layui-btn-danger">删除</button>
+		  				</div>
+		  			</div>
+		  		</form>
+		  	</div>
+		  </div>
+</script>
+
+<!-- 第二步：建立视图。用于呈现渲染结果。 -->
+<div id="view"></div>
+
+
+<script src="../layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//第三步：渲染模版
+	layui.use(['element', 'layer', 'laytpl'], function() {
+		var element = layui.element;
+		var $ = layui.jquery;
+		var layer = layui.layer;
+		var laytpl = layui.laytpl;
+
+		var data = {
+			"title": "Layui常用模块",
+			"list": [{
+				"modname": "弹层",
+				"alias": "layer",
+				"site": "layer.layui.com"
+			}, {
+				"modname": "表单",
+				"alias": "form"
+			}, {
+				"modname": "分页",
+				"alias": "laypage"
+			}, {
+				"modname": "日期",
+				"alias": "laydate"
+			}, {
+				"modname": "上传",
+				"alias": "upload"
+			}]
+		}
+
+		var getTpl = demo.innerHTML;
+		view = document.getElementById('view');
+		laytpl(getTpl).render(data, function(html) {
+			view.innerHTML = html;
+		});
+	});
+</script>
