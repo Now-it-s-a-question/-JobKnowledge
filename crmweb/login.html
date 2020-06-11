@@ -3,16 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<title>用户登录</title>
-		<link rel="stylesheet" href="../layui/css/layui.css">
-		<link rel="stylesheet" href="../layui/css/login/login.css" />
-		<script src="../layui/layui.js"></script>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<link rel="stylesheet" href="layui/css/login/login.css" />
+		<script src="layui/layui.js"></script>
 		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
 		</script>
 	</head>
 	<body>
 		<div class="loginMain">			
 			<div class="loginForm">
-				<img src="../layui/images/login/logo.png" class="loginLogo"/>	
+				<img src="layui/images/login/logo.png" class="loginLogo"/>
 				<div class="formLogin">
 					<a href="#" class="formLoginPwd">密码登录</a>
 					<a href="#" class="formLoginNoPwd">免密登录</a>
@@ -52,6 +52,33 @@
 					$('.formSubmitBtn').css('background','#009688');						
 				}
 			}
+			$("#Btn-Login").click(function () {
+				var username = $("#userName").val();  //获取账号
+				var passwprd = $("#pwd").val();//获取密码
+				console.log("账号:" + username.value + "\n" + "密码:" + passwprd.value);
+				loginUrl = "";
+				$.ajax({
+					url: '',
+					async: true,
+					cache: false,
+					type: "post",
+					dataType: 'json',
+					data: {
+						username: username,
+						password: passwprd,
+					},
+					success: function (data) {
+						if (data.success) {
+							//  $.toast('登录成功！');
+							if (data.user_role === 2) {
+								console.log(data.user_role);
+								window.location.href = "/index";
+							}  else {
+							alert("登录失败: " + data.errMsg);
+						}
+					}
+				})
+			});
 			
 		</script>
 	</body>
