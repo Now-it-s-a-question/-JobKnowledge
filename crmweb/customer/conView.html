@@ -14,8 +14,12 @@
 <script type="text/html" id="barCustomer">
     <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
-    <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    <div class="layui-inline" style="float: right;padding-right: 0px;position: absolute;right: 15px;">
+        <div class="layui-inline">
+            <input type="text" id="id" placeholder="请输入客户编号" autocomplete="off" class="layui-input" style="height: 26px;">
+        </div>
+        <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
+    </div>
 </script>
 <script type="text/html" id="operationBarCustomer">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -31,15 +35,15 @@
         //第一个实例
         table.render({
             elem: '#tabManageCustomer',
-            height: 380,
+            height: 600,
             url: 'http://localhost:8080/contact/contacts',
             // url: 'manageCustomerContacts/manageCustomerContactsData.json', //数据接口
             page: true, //开启分页
             method: 'get',
             toolbar: '#barCustomer', //添加编辑工具栏按钮
             defaultToolbar: [], //去掉默认的工具栏按钮
-            limits: [5, 10, 15, 20],
-            limit: 5,
+            limits: [10, 20, 30, 40],
+            limit: 10,
             cols: [
                 [ //表头
                     {
@@ -48,7 +52,7 @@
                     {
                         field: 'cusNo',
                         title: '客户编号',
-                        width: 100
+                        width: 104
                     },
                     {
                         field: 'ctName',
@@ -59,13 +63,13 @@
                     {
                         field: 'ctId',
                         title: '联系人编号',
-                        width: 100
+                        width: 105
                     },
                     {
                         field: 'ctGender',
                         title: '联系人性别',
                         edit: 'text',
-                        width: 100
+                        width: 90
                     },
                     {
                         field: 'ctPhone',
@@ -146,7 +150,7 @@
                 case 'add':
                     layer.open({
                         type: 2 //此处以iframe举例
-                        ,title: '新增客户信息'
+                        ,title: '新增联系人信息'
                         ,area: ['400px', '500px']
                         ,shade: 0.5//阴影（0-1之间的数）
                         ,maxmin: true//最大、最小化按钮

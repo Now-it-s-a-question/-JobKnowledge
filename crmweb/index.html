@@ -33,9 +33,9 @@
                     <a class="" href="javascript:;">客户管理</a>
                     <dl class="layui-nav-child">
                         <dd><a class="crm-menu" crmurl="customer/customerlist.html" href="javascript:;">客户信息</a></dd>
-<!--                        <dd><a class="crm-menu" crmurl="manageCustomerContacts/manageCustomerContactsList.html"-->
-<!--                               href="javascript:;">客户联系人</a>-->
-<!--                        </dd>-->
+                        <!--                        <dd><a class="crm-menu" crmurl="manageCustomerContacts/manageCustomerContactsList.html"-->
+                        <!--                               href="javascript:;">客户联系人</a>-->
+                        <!--                        </dd>-->
                         <dd><a class="crm-menu" crmurl="customerContactRecord/customerContactRecord.html"
                                href="javascript:;">客户交往记录</a></dd>
                     </dl>
@@ -45,11 +45,12 @@
                     <dl class="layui-nav-child">
                         <dd><a class="crm-menu" crmurl="oppotyunityUnit/oppotyunityUnit.html"
                                href="javascript:;">销售机会</a></dd>
-                        <dd><a href="javascript:;" class="crm-menu" crmurl="CustomerDevelopmentPlan/CustomerDevelopmentPlanlist.html">发展客户</a></dd>
+                        <dd><a href="javascript:;" class="crm-menu"
+                               crmurl="CustomerDevelopmentPlan/CustomerDevelopmentPlanlist.html">发展客户</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="">客户服务</a></li>
-                <li class="layui-nav-item"><a href="">统计报表</a></li>
+                <li class="layui-nav-item"><a class="statisticalReport" crmurl="customer/statisticalReport.html" href="javascript:;">统计报表</a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +67,7 @@
                 <div class="layui-carousel" id="test2">
                     <div carousel-item>
                         <!-- 中国地图-->
-                        <div id="carouselMap" ></div>
+                        <div id="carouselMap"></div>
                         <div id="main" style="width: 1670px;height: 700px;"></div>
                     </div>
                 </div>
@@ -84,29 +85,31 @@
 <script src="layui/layui.js"></script>
 <script>
     //JavaScript代码区域
-    layui.use(['element', 'jquery','carousel', 'form'], function () {
+    layui.use(['element', 'jquery', 'carousel', 'form'], function () {
         var element = layui.element;
         var $ = layui.jquery;
         var carousel = layui.carousel;
         var form = layui.form;
         //给菜单添加单击事件
         $('.crm-menu').click(function () {
-            //jQuery的ajax异步请求，第一个参数是请求的页面；
-            //第二个参数是提交数据；第三个参数是请求成功的回调函数
             $.get($(this).attr('crmurl'), null, function (obj) {
-                //把请求的页面填充到内容区域
+                $('.layui-body').children(0).html(obj)
+            })
+        });
+        $('.statisticalReport').click(function () {
+            $.get($(this).attr('crmurl'), null, function (obj) {
                 $('.layui-body').children(0).html(obj)
             })
         });
         //轮播设置
         carousel.render({
             elem: '#test2'
-            ,interval: 5000
-            ,anim: 'fade'
-            ,height: '750px',
-            autoplay:true,
-            arrow:'none',
-            width:'1690px'
+            , interval: 5000
+            , anim: 'fade'
+            , height: '750px',
+            autoplay: true,
+            arrow: 'none',
+            width: '1690px'
         });
 
         //获取柱形图
@@ -119,7 +122,7 @@
 
 <script>
     /* 柱形图方法 */
-    function getCarouselColumn (){
+    function getCarouselColumn() {
         var myChart = echarts.init(document.getElementById('main'));
 
         myChart.setOption({
@@ -194,13 +197,13 @@
         });
 
 
-
     }
+
     <!-- 中国地图方法 -->
-    function getCarouselMap(){
+    function getCarouselMap() {
         var carouselMap = echarts.init(document.getElementById('carouselMap'));
-        var dataList=[
-            {name:"南海诸岛",value:0},
+        var dataList = [
+            {name: "南海诸岛", value: 0},
             {name: '北京', value: randomValue()},
             {name: '天津', value: randomValue()},
             {name: '上海', value: randomValue()},
@@ -236,47 +239,49 @@
             {name: '香港', value: randomValue()},
             {name: '澳门', value: randomValue()}
         ]
+
         function randomValue() {
-            return Math.round(Math.random()*1000);
+            return Math.round(Math.random() * 1000);
         }
+
         carouselMap.setOption({
             tooltip: {
-                formatter:function(params,ticket, callback){
-                    return params.seriesName+'<br />'+params.name+'：'+params.value
+                formatter: function (params, ticket, callback) {
+                    return params.seriesName + '<br />' + params.name + '：' + params.value
                 }//数据格式化
             },
-            title:{
-                text:"全国各省份客户量概览",
-                left:'60px',
-                top:'40px'
+            title: {
+                text: "全国各省份客户量概览",
+                left: '60px',
+                top: '40px'
             },
             visualMap: {
                 min: 0,
                 max: 1500,
                 left: 'left',
                 top: 'bottom',
-                text: ['高','低'],//取值范围的文字
+                text: ['高', '低'],//取值范围的文字
                 inRange: {
                     color: ['#e0ffff', '#009688']//取值范围的颜色
                 },
-                show:true//图注
+                show: true//图注
             },
             geo: {
                 map: 'china',
                 roam: false,//不开启缩放和平移
-                zoom:1.23,//视角缩放比例
+                zoom: 1.23,//视角缩放比例
                 label: {
                     normal: {
                         show: true,
-                        fontSize:'10',
+                        fontSize: '10',
                         color: 'rgba(0,0,0,0.7)'
                     }
                 },
                 itemStyle: {
-                    normal:{
+                    normal: {
                         borderColor: 'rgba(0, 0, 0, 0.2)'
                     },
-                    emphasis:{
+                    emphasis: {
                         areaColor: '#F3B329',//鼠标选择区域颜色
                         shadowOffsetX: 0,
                         shadowOffsetY: 0,
@@ -286,12 +291,12 @@
                     }
                 }
             },
-            series : [
+            series: [
                 {
                     name: '客户量',
                     type: 'map',
                     geoIndex: 0,
-                    data:dataList
+                    data: dataList
                 }
             ]
         });

@@ -1,17 +1,19 @@
 <div>
-    <table id="tabCustomer" lay-filter="tabCustomer">
-    </table>
+    <div>
+        <dl>
+            <dt>
+
+            </dt>
+            <dd></dd>
+        </dl>
+    </div>
 </div>
 <script type="text/html" id="barCustomer">
     <a class="layui-btn layui-btn-xs" lay-event="add">新增</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <div class="layui-inline" style="float: right;padding-right: 0px;position: absolute;right: 15px;">
-        <div class="layui-inline">
-            <input type="text" id="id" placeholder="请输入查询内容" autocomplete="off" class="layui-input" style="height: 26px;">
-        </div>
-        <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
-    </div>
+    <input type="text" id="cusName" autocomplete="off" placeholder="请输入客户姓名查询" style="margin-left: 200px;">
+    <a class="layui-btn  layui-btn-xs" lay-event="search">搜索</a>
 </script>
 <script type="text/html" id="operationBarCustomer">
     <a class="layui-btn layui-btn-xs" lay-event="see">查看</a>
@@ -26,7 +28,7 @@
         //第一个实例
         table.render({
             elem: '#tabCustomer'
-            , height: 'full-180'
+            , height: 'full-150'
             , url: 'http://localhost:8080/customer/customers' //数据接口
             // ,method:'POST'
             , page: true //开启分页
@@ -51,7 +53,7 @@
                         }
                     }, width: 150
                 },
-                {field: 'operation', title: '联系人', width: 165, toolbar: '#operationBarCustomer'}
+                {field: 'operation', title: '联系人', width: 200, toolbar: '#operationBarCustomer'}
             ]]
         });
 
@@ -163,11 +165,11 @@
                 layer.open({
                     type: 2, //此处以iframe举例
                     title: '联系人查看',
-                    area: ['928px', '700px'],
+                    area: ['928px', '600px'],
                     shade: 0.5, //阴影（0-1之间的数）
                     maxmin: true, //最大、最小化按钮
                     offset: [ //为了演示，随机坐标
-                        ($(window).height() - 700) / 2, ($(window).width() - 928) / 2
+                        ($(window).height() - 600) / 2, ($(window).width() - 928) / 2
                     ],
                     content: 'customer/conView.html'
                 });
@@ -176,5 +178,4 @@
 
     });
 </script>
-		
-	
+

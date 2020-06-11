@@ -78,14 +78,6 @@ public class ContactController {
 	private CrmResult<Contact> remove(String[] ids) {
 		CrmResult<Contact> result = new CrmResult<>();
 		contactService.removeByIds(Arrays.asList(ids));
-//		for (int i = 0; i < ids.length; i++) {
-//			contactService.remove(new QueryWrapper<Contact>().eq("cosNo",ids.ge));
-//		}
-//		if (!success){
-//			result.setCode(-1);
-//			result.setMsg("失败");
-//			return result;
-//		}
 		result.setMsg("删除成功");
 		result.setCode(0);
 		return result;
